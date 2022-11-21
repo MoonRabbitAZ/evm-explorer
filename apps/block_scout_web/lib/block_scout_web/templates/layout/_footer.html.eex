@@ -1,0 +1,9 @@
+<footer class="footer">
+  <div class="footer-body container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="footer-info-text"><%= gettext("Moon Rabbit AngoZaibatsu LLC © 2022. All Rights Reserved. This is not an investment solicitation or offering. USofA citizens, residents and legal entities are fully excluded.") %></p>
+      </div>
+    </div>
+  </div>
+</footer>

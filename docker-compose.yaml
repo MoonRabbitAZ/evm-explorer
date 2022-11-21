@@ -1,0 +1,33 @@
+
+version: '3.1'
+
+services:
+  database:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: blockscout
+      POSTGRES_USER: blockscout
+      POSTGRES_DP: blockscout
+
+  explorer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image:  registry.gitlab.com/tokend/polkadot/blockscout:5845079ae99ff82c8742fe22194adc66b2216089
+    depends_on:
+      - database
+    ports:
+      - 4001:4001
+      - 4000:4000
+
+    environment:
+      DATABASE_URL: postgresql://blockscout:blockscout@database:5432/blockscout?ssl=false
+      ETHEREUM_JSONRPC_HTTP_URL: https://testnetevm.moonrabbit.com
+      ETHEREUM_JSONRPC_TRACE_URL: https://testnetevm.moonrabbit.com
+      ETHEREUM_JSONRPC_WS_URL: wss://wstestnetevm.moonrabbit.com
+      NETWORK: MoonRabbit
+      COIN: AAA
+      SUBNETWORK: DevNet
+      ETHEREUM_JSONRPC_VARIANT: geth
+
